@@ -39,6 +39,7 @@ void Game::render() {
     SDL_RenderPresent(renderer);
 }
 void Game::update() {
+    SDL_SetRenderDrawColor(renderer, rand()%255, rand()%255, rand()%255, 255);
     //update
 }
 
