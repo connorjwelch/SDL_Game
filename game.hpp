@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "SDL2/SDL.h"
+#include <string>
 
 class Game {
 public:
@@ -28,8 +29,8 @@ private:
     bool running;
     SDL_Window *window;
     SDL_Renderer *renderer;
-    
+    SDL_Texture *bg_tex;
 };
-
+SDL_Texture* loadTexture(std::string path, SDL_Renderer* render);
 
 #endif /* game_hpp */

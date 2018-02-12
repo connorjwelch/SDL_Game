@@ -12,7 +12,9 @@
 
 
 int main() {
+    
     Game *game = new Game(800, 600);
+    SDL_Init(SDL_INIT_VIDEO);
     game->run();
     while(game->isRunning()) {
         game->eventHandle();
