@@ -9,6 +9,10 @@
 #include "game.hpp"
 #include "SDL2/SDL.h"
 #include <iostream>
+#include "SDL2_image/SDL_image.h"
+#include "SDL2_image/SDL_image.h"
+
+
 
 Game::~Game() {
     clean();
@@ -17,10 +21,12 @@ Game::~Game() {
 
 void Game::run() {
     window = SDL_CreateWindow("Title", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
-    renderer = SDL_CreateRenderer(window, -1, 0);
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     
-    bg_tex = loadTexture("bg.bmp", renderer);
-    
+    bg_tex = IMG_LoadTexture(renderer, "bg.bmp");
+    bg_rect.w = 800;
+    bg_rect.h = 600;
+    bg_rect.x = 0;
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     
     running = true;
@@ -38,7 +44,7 @@ void Game::eventHandle() {
 
 void Game::render() {
     SDL_RenderClear(renderer);
-    SDL_RenderCopy(renderer, bg_tex, NULL, NULL);
+    SDL_RenderCopy(renderer, bg_tex, NULL, &bg_rect);
     //rendering
     SDL_RenderPresent(renderer);
 }
@@ -58,14 +64,5 @@ bool Game::isRunning() {
     return running;
 }
 
-SDL_Texture* loadTexture(std::string path, SDL_Renderer* render) {
-    SDL_Texture *tex;
-    SDL_Surface *surf = SDL_LoadBMP(path.c_str());
-    //std::cout << SDL_GetError() << std::endl;
-    tex = SDL_CreateTextureFromSurface(render, surf);
-    SDL_FreeSurface(surf);
-    return tex;
-    
-}
 
 

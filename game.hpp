@@ -30,7 +30,9 @@ private:
     SDL_Window *window;
     SDL_Renderer *renderer;
     SDL_Texture *bg_tex;
+    SDL_Rect bg_rect;
+    int x = 0, y = 0;
 };
-SDL_Texture* loadTexture(std::string path, SDL_Renderer* render);
+
 
 #endif /* game_hpp */
