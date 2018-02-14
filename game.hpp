@@ -30,8 +30,10 @@ private:
     SDL_Window *window;
     SDL_Renderer *renderer;
     SDL_Texture *bg_tex;
+    SDL_Texture *ship;
     SDL_Rect bg_rect;
-    int x = 0, y = 0;
+    SDL_Rect ship_rect;
+    double vx = 0, vy = 0;
 };
 
 
